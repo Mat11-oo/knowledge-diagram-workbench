@@ -1,0 +1,34 @@
+# ── 密钥与本地配置 ──
+.env
+.env.*
+!.env.example
+frontend/.env.local
+
+# ── 作品数据与媒体产物（含真实费用与用户内容）──
+data/
+backend/code/
+backend/temp/
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# ── Node / Next.js ──
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# ── 系统与编辑器 ──
+.DS_Store
+.idea/
+.vscode/
+
+# 测试运行时会往这里写一份离线样片用于人工检查，不入库
+docs/

@@ -1,0 +1,83 @@
+# 知识图解工作台 backend configuration.
+# Copy to config.yaml (git-ignored) and fill in keys, or edit them on the frontend Settings page.
+# Every value can also be overridden by an SFA_* environment variable, which is never written
+# back to this file, e.g. SFA_DASHSCOPE_API_KEY, SFA_PORT, SFA_MODEL_LLM.
+
+app:
+  name: 知识图解工作台
+  tagline: AI 短片创作 Agent
+
+server:
+  host: 127.0.0.1
+  port: 8000
+  log_level: INFO
+  access_log: false
+
+api_providers:
+  common:
+    print_model_input: false
+    proxy: ''               # e.g. http://127.0.0.1:7890, used by providers with enable_proxy: true
+  openai:
+    api_key: ''
+    base_url: https://api.openai.com/v1
+    enable_proxy: false
+  gemini:
+    api_key: ''
+    base_url: https://generativelanguage.googleapis.com/v1beta
+    enable_proxy: false
+  deepseek:
+    api_key: ''
+    base_url: https://api.deepseek.com/v1
+    enable_proxy: false
+  dashscope:
+    api_key: ''
+    base_url: https://dashscope.aliyuncs.com/api/v1
+    enable_proxy: false
+  ark:
+    api_key: ''
+    base_url: https://ark.cn-beijing.volces.com/api/v3
+    enable_proxy: false
+  kling:
+    base_url: https://api-beijing.klingai.com
+    access_key: ''
+    secret_key: ''
+    enable_proxy: false
+  # Any OpenAI-compatible endpoint (vLLM, Ollama, OpenRouter, ...). Register its models under
+  # custom_models below with provider: openai_compatible.
+  openai_compatible:
+    api_key: ''
+    base_url: ''
+    enable_proxy: false
+
+# Default models for the main workflow (ids from registry/models.yaml or custom_models).
+models:
+  llm: qwen3.5-plus
+  vlm: qwen3.5-plus
+  image_it2i: doubao-seedream-5-0-260128
+  image_t2i: doubao-seedream-5-0-260128
+  video: wan2.7-i2v
+  video_first_frame: wan2.7-i2v
+  video_start_end: wan2.7-i2v
+  video_reference: wan2.7-r2v
+
+generation:
+  style: realistic
+  video_ratio: '16:9'
+  video_resolution: 720P
+  video_generation_mode: first_frame   # first_frame | start_end | reference
+
+workflow:
+  # Scenario used when a project does not pick one: a folder name under backend/scenarios/.
+  default_scenario: short_film
+  # Replace the agent of a built-in stage in every scenario with your own AgentInterface subclass:
+  #   script_generation: my_plugins.script:MyScriptAgent
+  # To change a single scenario, set `agent:` on that stage in its scenario.yaml instead.
+  agents: {}
+
+# Extra models, same format as registry/models.yaml. Example:
+#   my-llm:
+#     name: My LLM
+#     provider: openai_compatible
+#     type: [llm]
+#     concurrency: 5
+custom_models: {}

@@ -1,0 +1,27 @@
+你是海报版式规划助手。第 {episode_number} 组《{episode_title}》中的每一“场”是一张海报，请把每一场划分为一个独立片段。
+
+输入文本已经在每一行开头标注了 [时长][unit_id]，例如 [3秒][U003] 主标题:春日下午茶。
+请只输出 JSON 数组，不要 Markdown，不要解释。每个数组元素格式：
+[
+  {{
+    "segment_number": 1,
+    "location": "海报背景名称",
+    "unit_ids": ["U001", "U002", "U003"]
+  }}
+]
+
+划分规则：
+1. 一场 = 一个片段 = 一张海报；场景切换时必须切分，同一场的所有行必须在同一个片段里。
+2. unit_ids 必须完整覆盖输入中的每一行，顺序不能改变，不能重复，不能遗漏。
+3. 不要输出原文或其他字段，只输出 segment_number、location、unit_ids。
+
+{retry_feedback}
+
+已有主体列表：
+{asset_characters}
+
+已有背景列表：
+{asset_settings}
+
+带时长文本：
+{annotated_script}

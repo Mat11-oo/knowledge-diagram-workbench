@@ -1,0 +1,35 @@
+# 知识图解工作台 —— 运行依赖
+# Python 3.12（与线上镜像 python:3.12-slim 一致）
+
+# Web 框架
+fastapi>=0.100.0
+uvicorn>=0.23.0
+
+# 数据校验
+pydantic>=2.0.0
+python-multipart>=0.0.6
+
+# 配置
+PyYAML>=6.0.0
+python-dotenv>=1.2.1
+
+# HTTP 客户端（模型调用与媒体下载）
+httpx>=0.24.0
+requests>=2.28.0
+
+# 中文排版与图片处理
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# 本机视频编码
+imageio-ffmpeg==0.6.0
+certifi>=2025.10.5
+
+# ── 以下为短剧 Agent 底座保留功能的依赖，只用知识图解可删 ──
+playwright>=1.51.0
+python-docx>=1.1.0
+PyPDF2
+openai>=1.0.0
+dashscope>=1.10.0
+PyJWT>=2.8.0
+edge-tts==7.2.7

@@ -1,0 +1,61 @@
+# 旅游宣传片：目的地 → 旁白脚本 → 人物与景点设定 → 分镜 → 画面 → 视频 → 成片。
+# 与 short_film 相比：以景点和旁白为主，人物只是体验者；脚本更短，默认横屏 16:9。
+name: 旅游宣传片
+tagline: 输入目的地，生成城市/景区宣传短片
+description: 适合文旅局、景区、酒店和旅行社的宣传短片。脚本以旁白串联景点，每一场对应一个景点或体验，场景设定图即景点风光图。
+category: video
+order: 40
+
+defaults:
+  style: realistic
+  video_ratio: "16:9"
+  video_resolution: 720P
+  video_generation_mode: first_frame
+  episodes: 1
+
+ui:
+  hero_title: 说出目的地，生成你的旅游宣传片
+  hero_subtitle: 写下目的地、想突出的景点和体验、目标游客，AI 生成旁白脚本、景点画面和宣传短片
+  placeholder: 例如：秋天的新疆喀纳斯，突出晨雾中的湖面、图瓦人村落和白桦林，面向喜欢自驾和摄影的年轻游客……
+  episodes_label: 版本数
+  examples:
+    - title: 秋日喀纳斯
+      description: 晨雾、湖泊与白桦林
+      idea: 秋天的新疆喀纳斯，突出晨雾中的神仙湾、禾木图瓦人村落的炊烟和金色白桦林，面向喜欢自驾和摄影的年轻游客，基调安静治愈。
+    - title: 江南古镇周末
+      description: 小桥流水慢生活
+      idea: 江南水乡古镇的周末游，突出清晨乌篷船、石板老街的小吃、夜晚灯笼倒映在河面，面向长三角的城市年轻人，主打两天一夜慢生活。
+    - title: 海岛亲子度假
+      description: 阳光沙滩与笑声
+      idea: 三亚海岛亲子度假酒店，突出孩子在沙滩堆城堡、亲子浮潜、海边日落晚餐，面向有 3-10 岁孩子的家庭。
+    - title: 冬季冰雪之城
+      description: 冰灯、雪原与烟火气
+      idea: 冬天的哈尔滨，突出冰雪大世界的冰灯夜景、中央大街的老建筑和热气腾腾的铁锅炖，面向南方游客，基调热闹温暖。
+    - title: 川西自驾
+      description: 雪山下的公路
+      idea: 川西 318 自驾线路，突出雪山下蜿蜒的公路、藏族村寨、高原湖泊的星空，面向喜欢户外探险的年轻人。
+
+stages:
+  - type: script_generation
+    name: 宣传脚本
+    short_name: 脚本
+    description: 用旁白串联景点和体验
+    options:
+      min_episode_lines: 10
+      max_episode_lines: 16
+  - type: character_design
+    name: 人物与景点
+    short_name: 景点
+    description: 生成出镜游客形象和各景点风光设定图
+  - type: storyboard
+    name: 镜头规划
+    short_name: 分镜
+  - type: reference_generation
+    name: 画面生成
+    short_name: 画面
+  - type: video_generation
+    name: 视频生成
+    short_name: 视频
+  - type: post_production
+    name: 成片剪辑
+    short_name: 成片

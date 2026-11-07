@@ -1,0 +1,53 @@
+# 商品海报（纯图像）：只用 4 个阶段，到「海报生成」就结束，不需要视频模型。
+# 演示如何裁剪阶段：海报文案(script) → 商品设定(character) → 版式规划(storyboard) → 海报生成(reference)。
+# 剧本里的每一“场”就是一张海报，参考图阶段直接产出最终海报。
+name: 商品海报
+tagline: 输入商品卖点，生成一组电商海报
+description: 纯图像场景，适合电商主图、详情页、社交媒体种草图。每一场脚本对应一张海报，商品四视图保证多张海报中的商品外观一致，海报可包含主标题和卖点文字。
+category: image
+order: 50
+
+defaults:
+  style: realistic
+  video_ratio: "3:4"      # 图像场景中即海报比例
+  episodes: 1             # 1 集 = 1 组海报
+
+ui:
+  hero_title: 写下卖点，生成一组商品海报
+  hero_subtitle: 每组 3-4 张，涵盖主视觉、卖点特写和使用场景；在「商品设定」阶段可上传真实商品图
+  placeholder: 例如：一款北欧风陶瓷马克杯，哑光釉面，有雾蓝和燕麦白两色，主打下午茶氛围和送礼……
+  episodes_label: 组数
+  examples:
+    - title: 陶瓷马克杯
+      description: 北欧风下午茶
+      idea: 一款北欧风陶瓷马克杯，350ml，哑光釉面，有雾蓝和燕麦白两色，主打下午茶氛围感和闺蜜送礼。
+    - title: 运动跑鞋
+      description: 轻量回弹
+      idea: 一款轻量缓震跑鞋，鞋面透气网布，白色配荧光绿鞋底，主打城市夜跑和 200 克超轻重量。
+    - title: 香薰蜡烛
+      description: 睡前放松仪式
+      idea: 一款大豆蜡香薰蜡烛，琥珀色玻璃杯，雪松与佛手柑香调，主打睡前放松和卧室氛围。
+    - title: 新茶上市
+      description: 春茶限定礼盒
+      idea: 春季限定的明前龙井礼盒，竹编外盒配青瓷茶罐，主打春茶上新、清香鲜爽和商务送礼。
+
+stages:
+  - type: script_generation
+    name: 海报文案
+    short_name: 文案
+    description: 规划一组海报：每张的画面、主标题和卖点文字
+    options:
+      min_episode_lines: 6
+      max_episode_lines: 12
+  - type: character_design
+    name: 商品设定
+    short_name: 商品
+    description: 生成商品四视图和海报背景场景，可上传真实商品图替换
+  - type: storyboard
+    name: 版式规划
+    short_name: 版式
+    description: 确定每张海报的构图和元素位置
+  - type: reference_generation
+    name: 海报生成
+    short_name: 海报
+    description: 生成最终海报图片，可逐张重新生成并挑选

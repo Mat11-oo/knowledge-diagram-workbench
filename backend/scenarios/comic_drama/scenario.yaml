@@ -1,0 +1,61 @@
+# 漫剧：竖屏、多集、强钩子的漫画风短剧。
+# 与 short_film 相比：默认竖屏 9:16、6 集、漫剧画风；提示词强调分集爽点和跨集角色一致性。
+name: 漫剧
+tagline: 竖屏多集漫画短剧，一集一个爽点
+description: 面向短视频平台连载的漫剧。剧本按集设计开场钩子和结尾悬念，角色以漫画设定图呈现，跨集保持形象一致；支持在剧本阶段续写后续剧集。
+category: video
+order: 30
+
+# 场景自带的画面风格：id 对应 prompts/style/<id>.txt，会追加到首页风格列表
+styles:
+  - id: comic-drama
+    label: 国漫漫剧
+
+defaults:
+  style: comic-drama
+  video_ratio: "9:16"
+  video_resolution: 720P
+  video_generation_mode: first_frame
+  episodes: 6
+
+ui:
+  hero_title: 写下设定，开连载你的漫剧
+  hero_subtitle: 给出世界观、主角和核心冲突，AI 按集生成剧本、角色设定、分镜和画面
+  placeholder: 例如：废柴少女意外继承了一家只在午夜营业的妖怪当铺，每集收下一件带着执念的旧物……
+  episodes_label: 集数
+  examples:
+    - title: 妖怪当铺
+      description: 午夜营业的奇怪店铺
+      idea: 废柴少女意外继承了一家只在午夜营业的妖怪当铺，每集都有一位妖怪来典当一件带着执念的旧物，她要帮对方了却心愿，同时揭开外婆失踪的秘密。
+    - title: 重生之电竞女王
+      description: 被踢出战队后的逆袭
+      idea: 电竞战队唯一的女选手在决赛前被队长陷害踢出战队，她重生回到三年前的青训营，决定组建自己的战队，在联赛中一路击败前队友。
+    - title: 社恐修仙
+      description: 只想躲起来的天才
+      idea: 修仙界第一天才其实是个重度社恐，为了不参加宗门大会装病三年，结果被派去带一群更离谱的新弟子下山历练。轻松搞笑风格。
+    - title: 末日便利店
+      description: 丧尸围城中的小店
+      idea: 末日爆发后，一家 24 小时便利店的夜班店员发现店里的商品会每天自动补货，他靠这家店收留幸存者、和各路势力周旋。
+    - title: 豪门真假千金
+      description: 认亲宴上的反转
+      idea: 真千金被接回豪门的认亲宴上，假千金当众设局陷害她，没想到真千金早就是隐藏身份的顶级珠宝设计师，一集一个反转打脸。
+
+stages:
+  - type: script_generation
+    name: 分集剧本
+    short_name: 剧本
+  - type: character_design
+    name: 角色设定
+    short_name: 角色
+  - type: storyboard
+    name: 漫剧分镜
+    short_name: 分镜
+  - type: reference_generation
+    name: 漫画画面
+    short_name: 画面
+  - type: video_generation
+    name: 动态视频
+    short_name: 视频
+  - type: post_production
+    name: 成片剪辑
+    short_name: 成片

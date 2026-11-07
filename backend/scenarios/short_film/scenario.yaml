@@ -1,0 +1,68 @@
+# AI 短片：内置的完整六阶段流程，也是其它场景包的参考模板。
+# 字段说明见 docs/scenarios.md。
+name: AI 短片
+tagline: 一句灵感，生成一部完整短片
+description: 从创意到成片的完整影视流程：剧本、角色与场景、分镜、参考图、视频片段、后期剪辑。
+category: video
+order: 10
+
+# 会话默认参数：用户在首页可以覆盖
+defaults:
+  style: realistic
+  video_ratio: "16:9"
+  video_resolution: 720P
+  video_generation_mode: first_frame
+  episodes: 4
+
+# 首页文案与灵感示例
+ui:
+  hero_title: Hi，一起聊聊你的创作想法
+  hero_subtitle: 从一句灵感开始，让 AI 陪你完成整部短片
+  placeholder: 描述你的想法，输入一段故事、一个画面或一句灵感……
+  episodes_label: 集数
+  examples:
+    - title: 生成科幻短片
+      description: 怪兽宇宙中的激烈对决...
+      idea: 以哥斯拉大战金刚主题，生成一个科幻风格短片
+      image: /ui/inspiration-space.png
+    - title: 水墨风格动画
+      description: 山水之间扁舟一叶...
+      idea: 请帮我制作一个水墨中国风的动画
+      image: /ui/inspiration-ink.png
+    - title: 悬疑侦探故事
+      description: 雨夜中的神秘黑影...
+      idea: 请生成一个发生在上世纪伦敦的悬疑侦探故事短片
+      image: /ui/inspiration-detective.png
+    - title: 治愈系微电影
+      description: 午后阳光下的猫咪...
+      idea: 制作一个温馨治愈的日常风格短片，主角是一只橘猫
+      image: /ui/inspiration-cat.png
+    - title: 太空探索纪录片
+      description: 穿越星云的壮丽旅程...
+      idea: 生成一段关于人类探索火星的伪纪录片风格视频
+      image: /ui/inspiration-mars.png
+    - title: 古风武侠打斗
+      description: 竹林深处的剑客对决...
+      idea: 制作一段节奏紧凑的古风武侠打斗场面
+      image: /ui/inspiration-wuxia.png
+
+# 阶段组成与顺序。内置阶段只需写 type，name / short_name / description 可按场景改写。
+stages:
+  - type: script_generation
+    name: 剧本生成
+    short_name: 剧本
+  - type: character_design
+    name: 角色 / 场景设计
+    short_name: 角色
+  - type: storyboard
+    name: 分镜设计
+    short_name: 分镜
+  - type: reference_generation
+    name: 参考图生成
+    short_name: 参考图
+  - type: video_generation
+    name: 视频生成
+    short_name: 视频
+  - type: post_production
+    name: 后期剪辑
+    short_name: 后期

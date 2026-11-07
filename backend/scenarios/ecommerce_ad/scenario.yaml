@@ -1,0 +1,61 @@
+# 电商广告片：商品卖点 → 广告脚本 → 商品/模特设定 → 广告分镜 → 画面 → 视频 → 成片。
+# 与 short_film 相比：同样六个阶段，但阶段名称、默认竖屏比例、脚本篇幅和提示词都换成了广告语境。
+name: 电商广告片
+tagline: 输入商品与卖点，生成带货短视频
+description: 面向电商投放的竖屏广告片。脚本围绕「痛点—卖点—证明—行动号召」展开，商品会作为核心主体设计四视图，保证各镜头外观一致。
+category: video
+order: 20
+
+defaults:
+  style: realistic
+  video_ratio: "9:16"
+  video_resolution: 720P
+  video_generation_mode: first_frame
+  episodes: 1          # 1 集 = 1 条广告；需要多个版本做 A/B 测试时可调大
+
+ui:
+  hero_title: 一句话说清商品，生成你的带货短视频
+  hero_subtitle: 写下商品名称、核心卖点和目标人群；在「商品设定」阶段可上传真实商品图替换 AI 生成的形象
+  placeholder: 例如：一款 300ml 便携保温杯，316 不锈钢，12 小时保温，目标人群是通勤白领，主打颜值和防漏……
+  episodes_label: 版本数
+  examples:
+    - title: 便携保温杯
+      description: 通勤白领的一天
+      idea: 一款 300ml 便携保温杯，316 不锈钢内胆，12 小时保温，一键弹盖防漏。目标人群是通勤白领，突出早上赶地铁也能喝上热咖啡的场景。
+    - title: 国货护手霜
+      description: 秋冬干裂一抹就好
+      idea: 国货品牌的乳木果护手霜，30g 小支装，质地清爽不黏腻，淡淡白茶香。目标人群是 20-30 岁女性，主打秋冬手部干裂修护和送礼。
+    - title: 降噪耳机
+      description: 嘈杂城市里的安静
+      idea: 一款主动降噪蓝牙耳机，40 小时续航，佩戴轻盈。目标人群是学生和通勤族，突出地铁、图书馆等嘈杂场景下一秒安静的对比。
+    - title: 有机绿茶
+      description: 高山茶园直发
+      idea: 来自高山茶园的有机明前绿茶，独立小袋包装。目标人群是注重健康的上班族，突出茶园产地、冲泡时的茶色和办公室午后提神。
+    - title: 儿童保温饭盒
+      description: 宝宝午餐也能热乎乎
+      idea: 一款儿童不锈钢保温饭盒，三格分装，卡通外观，6 小时保温。目标人群是幼儿园家长，突出孩子打开饭盒时开心的瞬间和家长的安心。
+
+stages:
+  - type: script_generation
+    name: 广告脚本
+    short_name: 脚本
+    description: 根据商品和卖点写出分镜友好的广告脚本
+    options:
+      min_episode_lines: 8     # 一条 30-45 秒的广告，8-14 行台词/动作即可
+      max_episode_lines: 14
+  - type: character_design
+    name: 商品与模特
+    short_name: 商品
+    description: 生成商品四视图、出镜模特和拍摄场景，可上传真实商品图替换
+  - type: storyboard
+    name: 广告分镜
+    short_name: 分镜
+  - type: reference_generation
+    name: 画面生成
+    short_name: 画面
+  - type: video_generation
+    name: 视频生成
+    short_name: 视频
+  - type: post_production
+    name: 成片剪辑
+    short_name: 成片

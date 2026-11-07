@@ -1,0 +1,899 @@
+# Model registry: every model the backend can call is declared here.
+#
+# Fields
+#   name          display name
+#   provider      api_providers.<id> in config.yaml that serves this model
+#                 (dashscope / ark / kling / openai / gemini / deepseek / openai_compatible)
+#   family        optional model family used by provider adapters (qwen, wan, seedream, ...)
+#   type          capability types: llm, vlm, t2i, i2i, video
+#   concurrency   max parallel requests when concurrency is enabled
+#   capabilities  optional media capability metadata (resolutions, ratios, durations, ...)
+#
+# Add or override models without editing this file:
+#   - backend/registry/models.local.yaml (same format, git-ignored), or
+#   - config.yaml -> custom_models: {<model-id>: {...}}
+models:
+  deepseek-chat:
+    name: DeepSeek Chat
+    provider: deepseek
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.002
+    price_per_1k_output_token: 0.008
+  deepseek-reasoner:
+    name: DeepSeek Reasoner
+    provider: deepseek
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.004
+    price_per_1k_output_token: 0.016
+  deepseek-v4-flash:
+    name: DeepSeek V4 Flash
+    provider: deepseek
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.001
+    price_per_1k_output_token: 0.004
+  deepseek-v4-pro:
+    name: DeepSeek V4 Pro
+    provider: deepseek
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.002
+    price_per_1k_output_token: 0.008
+  gpt-4o:
+    name: GPT-4o
+    provider: openai
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.018
+    price_per_1k_output_token: 0.072
+  gpt-5:
+    name: GPT-5
+    provider: openai
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.02
+    price_per_1k_output_token: 0.1
+  gpt-5.4:
+    name: GPT-5.4
+    provider: openai
+    type:
+    - llm
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.03
+    price_per_1k_output_token: 0.12
+  qwen3.7-max:
+    name: Qwen 3.7 Max
+    provider: dashscope
+    family: qwen
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.006
+    price_per_1k_output_token: 0.024
+  qwen3.7-plus:
+    name: Qwen 3.7 Plus
+    provider: dashscope
+    family: qwen
+    type:
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.0008
+    price_per_1k_output_token: 0.002
+  qwen3.5-plus:
+    name: Qwen 3.5 Plus
+    provider: dashscope
+    family: qwen
+    type:
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.0008
+    price_per_1k_output_token: 0.002
+  qwen3.6-max-preview:
+    name: Qwen 3.6 Max Preview
+    provider: dashscope
+    family: qwen
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.006
+    price_per_1k_output_token: 0.024
+  qwen3-max:
+    name: Qwen 3 Max
+    provider: dashscope
+    family: qwen
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.006
+    price_per_1k_output_token: 0.024
+  deepseek-v3.2:
+    name: DeepSeek V3.2 (DashScope)
+    provider: dashscope
+    family: deepseek
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.002
+    price_per_1k_output_token: 0.008
+  qwen3.6-plus:
+    name: Qwen 3.6 Plus
+    provider: dashscope
+    family: qwen
+    type:
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.0008
+    price_per_1k_output_token: 0.002
+  qwen3.6-flash:
+    name: Qwen 3.6 Flash
+    provider: dashscope
+    family: qwen
+    type:
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.0001
+    price_per_1k_output_token: 0.0001
+  kimi-k2.6:
+    name: Kimi K2.6
+    provider: dashscope
+    family: kimi
+    type:
+    - llm
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.001
+    price_per_1k_output_token: 0.003
+  gemini-2.5-flash:
+    name: Gemini 2.5 Flash
+    provider: gemini
+    type:
+    - llm
+    concurrency: 10
+    price_per_1k_input_token: 0.002
+    price_per_1k_output_token: 0.01
+  gemini-2.0-flash:
+    name: Gemini 2.0 Flash
+    provider: gemini
+    type:
+    - llm
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.002
+    price_per_1k_output_token: 0.01
+  gemini-2.5-flash-image:
+    name: Gemini 2.5 Flash Image
+    provider: gemini
+    type:
+    - vlm
+    concurrency: 10
+    price_per_1k_input_token: 0.002
+    price_per_1k_output_token: 0.01
+  wan2.7-image:
+    name: Wan 2.7 Image
+    provider: dashscope
+    family: wan
+    type:
+    - t2i
+    - i2i
+    concurrency: 5
+    price_per_image: 0.2
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      adapter_ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      - 2K
+      - 4K
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+  wan2.7-image-pro:
+    name: Wan 2.7 Image Pro
+    provider: dashscope
+    family: wan
+    type:
+    - t2i
+    - i2i
+    concurrency: 5
+    price_per_image: 0.4
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      - high_quality
+      adapter_ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      - 2K
+      - 4K
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+  wan2.6-t2i:
+    name: Wan 2.6 T2I
+    provider: dashscope
+    family: wan
+    type:
+    - t2i
+    concurrency: 5
+    price_per_image: 0.2
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      adapter_ability_types:
+      - text_to_image
+      input_modalities:
+      - text
+      adapter_input_modalities:
+      - text
+      api_contract_verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      - 2K
+      - 4K
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+  doubao-seedream-5-0-260128:
+    name: Seedream 5.0
+    provider: ark
+    family: seedream
+    type:
+    - t2i
+    - i2i
+    concurrency: 10
+    price_per_image: 0.22
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      - high_quality
+      adapter_ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      - 2K
+      - 4K
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+  doubao-seedream-4-5-251128:
+    name: Seedream 4.5
+    provider: ark
+    family: seedream
+    type:
+    - t2i
+    - i2i
+    concurrency: 10
+    price_per_image: 0.25
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      adapter_ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      - 2K
+      - 4K
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+  doubao-seedream-4-0-250828:
+    name: Seedream 4.0
+    provider: ark
+    family: seedream
+    type:
+    - t2i
+    - i2i
+    concurrency: 10
+    price_per_image: 0.2
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      adapter_ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      - 2K
+      - 4K
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+  sora_image:
+    name: Sora Image
+    provider: openai
+    type:
+    - t2i
+    concurrency: 3
+    price_per_image: 1.45
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      adapter_ability_types:
+      - text_to_image
+      input_modalities:
+      - text
+      adapter_input_modalities:
+      - text
+      api_contract_verified: true
+  gpt-image-2:
+    name: GPT Image 2
+    provider: openai
+    type:
+    - t2i
+    - i2i
+    concurrency: 3
+    price_per_image: 1.09
+    capabilities:
+      ability_type: image_generation
+      ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      adapter_ability_types:
+      - text_to_image
+      - image_to_image
+      - reference_image
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: true
+  wan2.6-i2v-flash:
+    name: Wan 2.6 I2V Flash
+    provider: dashscope
+    family: wan
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 0.6
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - first_frame_i2v
+      - audio_driven_i2v
+      - multi_shot
+      - fast_generation
+      adapter_ability_types:
+      - first_frame_i2v
+      input_modalities:
+      - text
+      - image
+      - audio
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 2
+        max: 15
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+      api_contract_verified: true
+  wan2.7-i2v:
+    name: Wan 2.7 I2V
+    provider: dashscope
+    family: wan
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 0.8
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - first_frame_i2v
+      - start_end_frame_i2v
+      - video_continuation
+      - audio_driven_i2v
+      - multi_shot
+      adapter_ability_types:
+      - first_frame_i2v
+      - start_end_frame_i2v
+      - audio_driven_i2v
+      input_modalities:
+      - text
+      - image
+      - audio
+      - video
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 2
+        max: 15
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+      api_contract_verified: true
+  happyhorse-1.0-i2v:
+    name: Happy Horse 1.0 I2V
+    provider: dashscope
+    family: happyhorse
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 1.0
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - first_frame_i2v
+      - native_audio
+      adapter_ability_types:
+      - first_frame_i2v
+      - native_audio
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 3
+        max: 15
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      api_contract_verified: true
+  kling-v3:
+    name: Kling V3
+    provider: kling
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 1.0
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - text_to_video
+      - image_to_video
+      - start_end_frame_i2v
+      - native_audio
+      - multi_shot
+      - element_reference
+      adapter_ability_types:
+      - first_frame_i2v
+      - native_audio
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 3
+        max: 15
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      api_contract_verified: false
+  kling-v2-6:
+    name: Kling V2.6
+    provider: kling
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 0.5
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - text_to_video
+      - image_to_video
+      - start_end_frame_i2v
+      - native_audio
+      adapter_ability_types:
+      - first_frame_i2v
+      - native_audio
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: false
+  kling-v2-5-turbo:
+    name: Kling V2.5 Turbo
+    provider: kling
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 0.3
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - image_to_video
+      adapter_ability_types:
+      - first_frame_i2v
+      - native_audio
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      api_contract_verified: false
+  doubao-seedance-2-0-260128:
+    name: Seedance 2.0
+    provider: ark
+    family: seedance
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 0.5
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - text_to_video
+      - image_to_video
+      adapter_ability_types:
+      - first_frame_i2v
+      - native_audio
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 2
+        max: 12
+        integer: true
+        verified: true
+      resolutions:
+      - 720p
+      - 1080p
+      ratios:
+      - '16:9'
+      - '4:3'
+      - '1:1'
+      - '3:4'
+      - '9:16'
+      - '21:9'
+      - adaptive
+      api_contract_verified: true
+  doubao-seedance-2-0-fast-260128:
+    name: Seedance 2.0 Fast
+    provider: ark
+    family: seedance
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 0.3
+    capabilities:
+      ability_type: image_to_video
+      ability_types:
+      - text_to_video
+      - image_to_video
+      - fast_generation
+      adapter_ability_types:
+      - first_frame_i2v
+      - native_audio
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 2
+        max: 12
+        integer: true
+        verified: true
+      resolutions:
+      - 720p
+      - 1080p
+      ratios:
+      - '16:9'
+      - '4:3'
+      - '1:1'
+      - '3:4'
+      - '9:16'
+      - '21:9'
+      - adaptive
+      api_contract_verified: true
+  wan2.7-r2v:
+    name: Wan 2.7 R2V
+    provider: dashscope
+    family: wan
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 0.8
+    capabilities:
+      ability_type: reference_to_video
+      ability_types:
+      - reference_to_video
+      - digital_human
+      - multi_character
+      - native_audio
+      - voice_reference
+      - multi_shot
+      adapter_ability_types:
+      - reference_to_video
+      - digital_human
+      - voice_reference
+      input_modalities:
+      - text
+      - image
+      - audio
+      - video
+      adapter_input_modalities:
+      - text
+      - image
+      - audio
+      duration:
+        min: 2
+        max: 10
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+      api_contract_verified: true
+  wan2.7-videoedit:
+    name: Wan 2.7 Video Edit
+    provider: dashscope
+    family: wan
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 0.8
+    capabilities:
+      ability_type: video_editing
+      ability_types:
+      - video_editing
+      - action_transfer
+      - instruction_editing
+      - video_transfer
+      adapter_ability_types:
+      - action_transfer
+      - video_editing
+      input_modalities:
+      - text
+      - image
+      - video
+      adapter_input_modalities:
+      - text
+      - image
+      - video
+      duration:
+        min: 2
+        max: 10
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '1:1'
+      - '4:3'
+      - '3:4'
+      api_contract_verified: true
+  happyhorse-1.0-r2v:
+    name: Happy Horse 1.0 R2V
+    provider: dashscope
+    family: happyhorse
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 1.0
+    capabilities:
+      ability_type: reference_to_video
+      ability_types:
+      - reference_to_video
+      - digital_human
+      - multi_character
+      - native_audio
+      - multi_shot
+      adapter_ability_types:
+      - reference_to_video
+      - digital_human
+      input_modalities:
+      - text
+      - image
+      adapter_input_modalities:
+      - text
+      - image
+      duration:
+        min: 3
+        max: 15
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      ratios:
+      - '16:9'
+      - '9:16'
+      - '3:4'
+      - '4:3'
+      - '1:1'
+      api_contract_verified: true
+  happyhorse-1.0-video-edit:
+    name: Happy Horse 1.0 Video Edit
+    provider: dashscope
+    family: happyhorse
+    type:
+    - video
+    concurrency: 5
+    price_per_second: 1.0
+    capabilities:
+      ability_type: video_editing
+      ability_types:
+      - video_editing
+      - action_transfer
+      - instruction_editing
+      - native_audio
+      adapter_ability_types:
+      - action_transfer
+      - video_editing
+      input_modalities:
+      - text
+      - image
+      - video
+      adapter_input_modalities:
+      - text
+      - image
+      - video
+      duration:
+        min: 3
+        max: 15
+        integer: true
+        verified: true
+      resolutions:
+      - 720P
+      - 1080P
+      api_contract_verified: true
+  seedance-1-0-pro:
+    name: Seedance 1.0 Pro
+    provider: ark
+    family: seedance
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 0.5
+    capabilities:
+      ability_type: image_to_video
+      ability_types: []
+      adapter_ability_types:
+      - first_frame_i2v
+      api_contract_verified: false
+  seedance-1-0-lite:
+    name: Seedance 1.0 Lite
+    provider: ark
+    family: seedance
+    type:
+    - video
+    concurrency: 10
+    price_per_second: 0.3
+    capabilities:
+      ability_type: image_to_video
+      ability_types: []
+      adapter_ability_types:
+      - first_frame_i2v
+      api_contract_verified: false

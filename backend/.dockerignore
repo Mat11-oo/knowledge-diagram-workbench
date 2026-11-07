@@ -1,0 +1,10 @@
+.venv
+venv
+__pycache__
+*.pyc
+config.yaml
+registry/models.local.yaml
+code
+temp
+logs
+.env

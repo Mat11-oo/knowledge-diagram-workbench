@@ -1,0 +1,1272 @@
+/* ============================================================
+   知识图解工作台 — 深色现代主题 v3.1
+   设计语言：Linear / Vercel Dashboard 风格；深色、圆润、年轻化
+   只作用于 .kd-workbench 作用域，不影响底座其他页面
+   ============================================================ */
+
+/* ── 设计 Token ─────────────────────────────────────────── */
+.kd-workbench {
+  --kd-bg:            #0F1117;
+  --kd-surface:       #1A1D27;
+  --kd-surface-2:     #222631;
+  --kd-surface-3:     #2A2F3F;
+  --kd-border:        rgba(255,255,255,0.08);
+  --kd-border-strong: rgba(255,255,255,0.14);
+  --kd-text:          #F0F0F5;
+  --kd-text-2:        #C8CBD8;
+  --kd-text-muted:    #9095A8;
+  --kd-text-faint:    #7A8095;
+  --kd-accent:        #6366F1;
+  --kd-accent-2:      #8B5CF6;
+  --kd-accent-soft:   rgba(99,102,241,0.14);
+  --kd-accent-glow:   0 0 20px rgba(99,102,241,0.25);
+  --kd-success:       #10B981;
+  --kd-success-soft:  rgba(16,185,129,0.12);
+  --kd-error:         #EF4444;
+  --kd-error-soft:    rgba(239,68,68,0.12);
+  --kd-warning:       #F59E0B;
+  --kd-warning-soft:  rgba(245,158,11,0.12);
+  --kd-r:             12px;
+  --kd-r-lg:          20px;
+  --kd-r-pill:        9999px;
+  --kd-t:             150ms ease;
+  --kd-font:          "Plus Jakarta Sans", Inter, -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+/* ── 全局容器 ───────────────────────────────────────────── */
+.kd-workbench {
+  min-height: 100vh;
+  background: var(--kd-bg);
+  color: var(--kd-text);
+  font-family: var(--kd-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 顶栏 ───────────────────────────────────────────────── */
+.kd-header {
+  height: 60px;
+  border-bottom: 1px solid var(--kd-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: rgba(15,17,23,0.85);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.kd-brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--kd-text);
+}
+
+.kd-brand small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  font-weight: 400;
+  color: var(--kd-text-muted);
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.kd-logo {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--kd-accent), var(--kd-accent-2));
+  border-radius: 8px;
+  color: #fff;
+  font-family: serif;
+  font-size: 18px;
+  box-shadow: var(--kd-accent-glow);
+}
+
+.kd-local {
+  font-size: 11px;
+  border: 1px solid var(--kd-border-strong);
+  padding: 5px 12px;
+  border-radius: var(--kd-r-pill);
+  color: var(--kd-text-muted);
+  background: var(--kd-surface);
+}
+
+/* ── 内容容器 ───────────────────────────────────────────── */
+.kd-container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 32px;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.kd-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 40px 0 28px;
+}
+
+.kd-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--kd-accent);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.kd-hero h1 {
+  font-size: clamp(22px, 2.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 8px 0 10px;
+  background: linear-gradient(135deg, var(--kd-text) 60%, var(--kd-text-muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.kd-hero p:not(.kd-eyebrow) {
+  font-size: 13px;
+  color: var(--kd-text-muted);
+  line-height: 1.7;
+}
+
+.kd-budget {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  min-width: 150px;
+  border-left: 1px solid var(--kd-border);
+  padding-left: 24px;
+  font-size: 11px;
+  color: var(--kd-text-muted);
+}
+
+.kd-budget strong {
+  font-size: 28px;
+  letter-spacing: -1px;
+  color: var(--kd-text);
+  font-weight: 600;
+}
+
+.kd-budget small {
+  line-height: 1.8;
+  font-size: 10px;
+}
+
+/* ── 步骤导航 ───────────────────────────────────────────── */
+.kd-steps {
+  display: flex;
+  border-top: 1px solid var(--kd-border);
+  border-bottom: 1px solid var(--kd-border);
+  gap: 0;
+  padding: 0;
+  margin-top: 24px;
+  color: var(--kd-text-faint);
+  font-size: 11px;
+}
+
+.kd-step {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  border-right: 1px solid var(--kd-border);
+  transition: color var(--kd-t);
+}
+
+.kd-step:last-child { border-right: none; }
+
+.kd-step b {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 10px;
+  color: var(--kd-text-faint);
+}
+
+.kd-step-current {
+  color: var(--kd-text-2);
+  background: var(--kd-surface-2);
+}
+
+.kd-step-current b {
+  color: var(--kd-accent);
+}
+
+.kd-step-done b {
+  color: var(--kd-success);
+}
+
+.kd-step-done {
+  color: var(--kd-text-muted);
+}
+
+/* ── 分步容器 ───────────────────────────────────────────── */
+.kd-stage {
+  margin-top: 32px;
+}
+
+.kd-stage-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--kd-text-2);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--kd-border);
+}
+
+.kd-step-num {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: var(--kd-accent-soft);
+  color: var(--kd-accent);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ── 工具栏 ─────────────────────────────────────────────── */
+.kd-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 20px 0 16px;
+  font-size: 12px;
+  color: var(--kd-text-muted);
+}
+
+.kd-work-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--kd-text-2);
+}
+
+.kd-toolbar-actions {
+  display: flex;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.kd-text-button {
+  font-size: 11px;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--kd-text-muted);
+  transition: color var(--kd-t);
+  /* WCAG 2.2 SC 2.5.8：可点击区域至少 24×24 CSS px */
+  min-height: 24px;
+  padding: 3px 2px;
+}
+
+.kd-text-button:hover { color: var(--kd-text); }
+
+/* ── 2 列网格 ───────────────────────────────────────────── */
+.kd-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1.05fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── 面板卡片 ───────────────────────────────────────────── */
+.kd-panel {
+  background: var(--kd-surface);
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r-lg);
+  padding: 24px;
+  min-width: 0;
+  transition: border-color var(--kd-t);
+}
+
+.kd-panel:hover { border-color: var(--kd-border-strong); }
+
+.kd-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.kd-panel h2,
+.kd-library h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 6px;
+  letter-spacing: -0.3px;
+}
+
+.kd-muted {
+  font-size: 12px;
+  color: var(--kd-text-muted);
+  line-height: 1.8;
+}
+
+.kd-save-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--kd-text-faint);
+}
+
+/* ── 表单元素 ───────────────────────────────────────────── */
+.kd-label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 16px 0 0;
+  font-size: 11px;
+  color: var(--kd-text-muted);
+  font-weight: 500;
+}
+
+.kd-label input,
+.kd-label textarea,
+.kd-card-editor select,
+.kd-card-studio select {
+  width: 100%;
+  border: 1px solid var(--kd-border);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--kd-surface-2);
+  outline: none;
+  line-height: 1.7;
+  color: var(--kd-text);
+  border-radius: var(--kd-r);
+  min-width: 0;
+  transition: border-color var(--kd-t), box-shadow var(--kd-t);
+}
+
+.kd-label input:focus,
+.kd-label textarea:focus,
+.kd-card-editor select:focus,
+.kd-card-studio select:focus {
+  border-color: var(--kd-accent);
+  box-shadow: 0 0 0 3px var(--kd-accent-soft);
+}
+
+.kd-label textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.kd-label input::placeholder,
+.kd-label textarea::placeholder {
+  color: var(--kd-text-faint);
+}
+
+.kd-input-row {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 14px;
+}
+
+.kd-text-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--kd-text-faint);
+  margin-top: 6px;
+}
+
+/* ── 操作区 ─────────────────────────────────────────────── */
+.kd-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ── 按钮 ───────────────────────────────────────────────── */
+.kd-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r);
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 500;
+  min-height: 38px;
+  transition: all var(--kd-t);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kd-primary {
+  background: linear-gradient(135deg, var(--kd-accent), var(--kd-accent-2));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 1px 8px rgba(99,102,241,0.3);
+}
+
+.kd-primary:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: var(--kd-accent-glow);
+}
+
+.kd-secondary {
+  background: var(--kd-surface-2);
+  color: var(--kd-text-2);
+  border-color: var(--kd-border);
+}
+
+.kd-secondary:hover:not(:disabled) {
+  background: var(--kd-surface-3);
+  border-color: var(--kd-border-strong);
+}
+
+.kd-workbench button { cursor: pointer; }
+
+.kd-workbench button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.kd-workbench button:focus-visible,
+.kd-workbench a:focus-visible {
+  outline: 2px solid var(--kd-accent);
+  outline-offset: 3px;
+}
+
+.kd-footnote {
+  margin-top: 12px;
+  font-size: 10px;
+}
+
+/* ── Intro 占位面板 ─────────────────────────────────────── */
+.kd-intro {
+  min-height: 520px;
+  position: relative;
+  background: linear-gradient(145deg, var(--kd-surface) 0%, var(--kd-surface-3) 100%);
+  border-radius: var(--kd-r-lg);
+  border: 1px solid var(--kd-border);
+  padding: 36px;
+  overflow: hidden;
+}
+
+.kd-intro::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.kd-intro h2 {
+  font-size: 30px;
+  line-height: 1.5;
+  margin-top: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--kd-text);
+}
+
+.kd-intro-lines {
+  margin: 28px 0;
+  font-size: 12px;
+  line-height: 2.8;
+  color: var(--kd-text-muted);
+}
+
+.kd-intro-lines span {
+  color: var(--kd-accent);
+  margin-right: 12px;
+  font-weight: 700;
+}
+
+.kd-intro > svg {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  color: var(--kd-border-strong);
+}
+
+/* ── 空状态 ─────────────────────────────────────────────── */
+.kd-empty {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--kd-text-faint);
+  text-align: center;
+  gap: 14px;
+}
+
+.kd-empty h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--kd-text-muted);
+}
+
+.kd-empty p {
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* ── 状态反馈 ───────────────────────────────────────────── */
+.kd-error {
+  background: var(--kd-error-soft);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #FCA5A5;
+  font-size: 12px;
+  padding: 12px 16px;
+  line-height: 1.8;
+  margin: 14px 0;
+  overflow-wrap: anywhere;
+  border-radius: var(--kd-r);
+}
+
+.kd-error-text { color: #FCA5A5; font-size: 11px; }
+
+.kd-success {
+  font-size: 11px;
+  color: var(--kd-success);
+  padding: 14px 0;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.kd-count {
+  font-size: 10px;
+  color: var(--kd-text-faint);
+  white-space: nowrap;
+}
+
+/* ── 核对区 ─────────────────────────────────────────────── */
+.kd-review-columns { display: grid; gap: 16px; }
+
+.kd-claim {
+  border: 1px solid var(--kd-border);
+  padding: 14px;
+  margin-top: 10px;
+  background: var(--kd-surface-2);
+  border-radius: var(--kd-r);
+  transition: border-color var(--kd-t);
+}
+
+.kd-claim-active {
+  border-color: var(--kd-accent);
+  background: linear-gradient(135deg, var(--kd-surface-2), rgba(99,102,241,0.06));
+}
+
+.kd-claim-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.kd-select {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--kd-text-muted);
+  /* 整块 label 都是点击区，保证复选框的有效目标够大 */
+  min-height: 32px;
+  min-width: 44px;
+  cursor: pointer;
+}
+
+.kd-badge {
+  font-size: 9px;
+  background: var(--kd-surface-3);
+  color: var(--kd-text-muted);
+  padding: 3px 7px;
+  border-radius: var(--kd-r-pill);
+  font-weight: 500;
+}
+
+.kd-supplement {
+  background: rgba(245,158,11,0.12);
+  color: #FCD34D;
+}
+
+.kd-claim-text {
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.8;
+  width: 100%;
+  padding: 12px 0;
+  color: var(--kd-text-2);
+}
+
+.kd-claim-tools {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.kd-claim-tools button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--kd-text-muted);
+  /* WCAG 2.2 SC 2.5.8：图标按钮的可点击区域至少 24×24 */
+  min-height: 24px;
+  min-width: 24px;
+  padding: 2px 4px;
+  transition: color var(--kd-t);
+}
+
+.kd-claim-tools button:hover { color: var(--kd-text); }
+
+.kd-source-panel {
+  background: var(--kd-surface-2);
+  border: 1px solid var(--kd-border);
+  padding: 16px;
+  min-width: 0;
+  border-radius: var(--kd-r);
+}
+
+.kd-source-panel h3 {
+  font-size: 12px;
+  margin: 8px 0;
+  font-weight: 600;
+  color: var(--kd-text-2);
+}
+
+.kd-source-panel blockquote {
+  font-size: 12px;
+  line-height: 2;
+  color: var(--kd-text-muted);
+  overflow-wrap: anywhere;
+  margin-top: 8px;
+}
+
+.kd-source-panel mark {
+  background: var(--kd-accent-soft);
+  color: #A5B4FC;
+  padding: 2px 0;
+  border-radius: 3px;
+}
+
+.kd-source-panel a {
+  font-size: 10px;
+  color: var(--kd-accent);
+  display: block;
+  margin-top: 12px;
+  text-decoration: underline;
+  opacity: 0.8;
+  transition: opacity var(--kd-t);
+}
+
+.kd-source-panel a:hover { opacity: 1; }
+
+.kd-merge {
+  border-top: 1px solid var(--kd-border);
+  margin-top: 18px;
+  padding-bottom: 4px;
+}
+
+.kd-merge button { margin-top: 10px; }
+
+/* ── 作品库 ─────────────────────────────────────────────── */
+.kd-library {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--kd-border);
+}
+
+.kd-work-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.kd-work-list > button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  background: var(--kd-surface);
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r-lg);
+  padding: 16px;
+  font-size: 12px;
+  min-width: 0;
+  color: var(--kd-text-2);
+  transition: all var(--kd-t);
+}
+
+.kd-work-list > button:hover {
+  background: var(--kd-surface-2);
+  border-color: var(--kd-border-strong);
+  transform: translateY(-1px);
+}
+
+.kd-work-list span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+
+.kd-work-list small {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: var(--kd-text-faint);
+  font-weight: 400;
+}
+
+/* ── 页脚 ───────────────────────────────────────────────── */
+.kd-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: var(--kd-text-faint);
+  font-size: 10px;
+  padding: 28px 0;
+  letter-spacing: 0.5px;
+  border-top: 1px solid var(--kd-border);
+  margin-top: 48px;
+}
+
+/* ── 加载 ───────────────────────────────────────────────── */
+.kd-loading {
+  padding: 32px;
+  color: var(--kd-text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ── 卡片工作室 ─────────────────────────────────────────── */
+.kd-card-studio { margin-top: 20px; }
+
+.kd-cards-layout {
+  display: grid;
+  grid-template-columns: minmax(180px,.65fr) minmax(0,1.5fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.kd-card-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kd-card-pick {
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r);
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  min-width: 0;
+  background: var(--kd-surface-2);
+  transition: all var(--kd-t);
+}
+
+.kd-card-pick:hover { border-color: var(--kd-border-strong); }
+
+.kd-card-selected {
+  background: var(--kd-accent-soft);
+  border-color: var(--kd-accent) !important;
+}
+
+.kd-card-pick-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--kd-text-2);
+}
+
+.kd-card-pick-main strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--kd-text);
+}
+
+.kd-card-pick-main small {
+  font-size: 10px;
+  color: var(--kd-text-faint);
+}
+
+.kd-card-order {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kd-card-order button { padding: 7px; border-radius: 6px; }
+
+.kd-card-editor h3,
+.kd-export-history h3 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.kd-card-editor fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.kd-card-editor .kd-button { margin-top: 14px; }
+
+.kd-illustration {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+}
+
+.kd-illustration img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r);
+}
+
+.kd-export-history {
+  border-top: 1px solid var(--kd-border);
+  margin-top: 22px;
+  padding-top: 20px;
+}
+
+.kd-export-history article {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--kd-border);
+}
+
+.kd-export-history .kd-panel-heading {
+  font-size: 11px;
+  flex-wrap: wrap;
+  color: var(--kd-text-muted);
+}
+
+.kd-export-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+}
+
+.kd-export-thumbnails a {
+  font-size: 10px;
+  min-width: 0;
+  color: var(--kd-accent);
+  transition: opacity var(--kd-t);
+}
+
+.kd-export-thumbnails a:hover { opacity: 0.8; }
+
+.kd-export-thumbnails img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r);
+  margin-bottom: 6px;
+}
+
+.kd-cards-layout input,
+.kd-cards-layout textarea { font-size: 13px; }
+
+/* ── 视频区 ─────────────────────────────────────────────── */
+.kd-video-history {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%,260px),1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.kd-video-history article {
+  min-width: 0;
+  border-top: 1px solid var(--kd-border);
+  padding-top: 16px;
+}
+
+.kd-video-history h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.kd-video-history video {
+  display: block;
+  width: 100%;
+  max-height: 600px;
+  background: var(--kd-surface-3);
+  border-radius: var(--kd-r);
+  border: 1px solid var(--kd-border);
+  margin: 12px 0;
+}
+
+/* ── 分镜步骤 ───────────────────────────────────────────── */
+.kd-scene-step {
+  margin: 14px 0;
+  padding: 14px;
+  border: 1px solid var(--kd-border);
+  border-radius: var(--kd-r);
+  background: var(--kd-surface-2);
+}
+
+/* ── 杂项 ───────────────────────────────────────────────── */
+.kd-material-fields { border: 0; margin: 0; padding: 0; min-width: 0; }
+.kd-cards-layout > div { min-width: 0; }
+.kd-card-editor { min-width: 0; }
+.kd-card-studio .kd-panel-heading > span { min-width: 0; overflow-wrap: anywhere; }
+
+/* ── 响应式 ─────────────────────────────────────────────── */
+@media (min-width: 1500px) {
+  .kd-review-columns { grid-template-columns: 1fr .8fr; }
+  .kd-source-panel { margin-top: 10px; position: sticky; top: 70px; align-self: start; }
+}
+
+@media (max-width: 900px) {
+  .kd-grid { grid-template-columns: 1fr; }
+  .kd-intro { min-height: 300px; }
+  .kd-intro h2 { font-size: 24px; }
+  .kd-work-list { grid-template-columns: 1fr 1fr; }
+  .kd-steps { flex-direction: column; }
+  .kd-step { border-right: none; border-bottom: 1px solid var(--kd-border); padding: 8px 0; }
+  .kd-step:last-child { border-bottom: none; }
+  .kd-topbar { padding: 20px 0 0; }
+  .kd-stage { margin-top: 24px; }
+  .kd-stage-label { margin-bottom: 10px; }
+}
+
+@media (max-width: 700px) {
+  .kd-cards-layout { grid-template-columns: minmax(0,1fr); }
+  .kd-card-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kd-card-pick { padding: 10px; }
+  .kd-card-order { gap: 0; }
+  .kd-export-thumbnails { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+@media (max-width: 540px) {
+  .kd-header { height: 56px; padding: 0 16px; }
+  .kd-container { padding: 0 16px; }
+  .kd-brand { font-size: 13px; gap: 8px; }
+  .kd-brand small { font-size: 8px; }
+  .kd-logo { width: 28px; height: 28px; font-size: 15px; }
+  .kd-local { font-size: 9px; padding: 4px 8px; }
+  .kd-hero { padding: 24px 0; gap: 12px; }
+  .kd-hero h1 { font-size: 22px; max-width: 200px; }
+  .kd-hero p:not(.kd-eyebrow) { font-size: 11px; }
+  .kd-budget { min-width: 90px; padding-left: 12px; font-size: 9px; }
+  .kd-budget strong { font-size: 22px; }
+  .kd-budget small { font-size: 8px; }
+  .kd-eyebrow { font-size: 8px; letter-spacing: 1px; }
+  .kd-steps { display: grid; grid-template-columns: 1fr 1fr; font-size: 9px; }
+  .kd-step { border-right: 1px solid var(--kd-border); border-bottom: 1px solid var(--kd-border); padding: 6px 0; }
+  .kd-step:nth-child(2n) { border-right: none; }
+  .kd-step:nth-last-child(-n+2) { border-bottom: none; }
+  .kd-step b { display: inline; margin-right: 4px; margin-bottom: 0; font-size: 9px; }
+  .kd-panel { padding: 16px; border-radius: var(--kd-r); }
+  .kd-panel h2 { font-size: 16px; }
+  .kd-input-row { grid-template-columns: 1fr; gap: 0; }
+  .kd-text-meta { font-size: 9px; flex-wrap: wrap; }
+  .kd-toolbar-actions { gap: 8px; }
+  .kd-text-button { font-size: 10px; }
+  .kd-work-list { grid-template-columns: 1fr; }
+  .kd-footer { flex-direction: column; line-height: 1.8; }
+  .kd-claim-tools { gap: 8px; }
+  .kd-intro { padding: 24px; border-radius: var(--kd-r); }
+  .kd-save-status { font-size: 9px; }
+}
+
+@media (max-width: 540px) {
+  /* 1080×1920 的导出卡在手机上两列会看不清字，改成单列 */
+  .kd-export-thumbnails { grid-template-columns: 1fr; gap: 14px; }
+  .kd-export-thumbnails a { display: block; }
+  .kd-export-thumbnails img { max-width: 320px; }
+}
+
+@media (max-width: 400px) {
+  .kd-card-picker { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   阶段3-2：无障碍与移动端改进
+   ============================================================ */
+
+/* ── 屏幕阅读器专用文字（视觉隐藏但可被朗读） ─────────── */
+.kd-sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── 跳转到主内容（键盘用户第一个 Tab 就能看到） ─────── */
+.kd-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 200;
+  background: var(--kd-accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--kd-r);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--kd-t);
+}
+
+.kd-skip-link:focus {
+  top: 12px;
+}
+
+/* ── 减少动效偏好：系统开启「减少动态效果」时全部关掉 ── */
+@media (prefers-reduced-motion: reduce) {
+  .kd-workbench *,
+  .kd-workbench *::before,
+  .kd-workbench *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .kd-work-list > button:hover {
+    transform: none;
+  }
+}
+
+/* ── 高对比度偏好：加强边框 ───────────────────────────── */
+@media (prefers-contrast: more) {
+  .kd-workbench {
+    --kd-border: rgba(255, 255, 255, 0.28);
+    --kd-border-strong: rgba(255, 255, 255, 0.45);
+    --kd-text-muted: #C8CBD8;
+    --kd-text-faint: #A9AFC0;
+  }
+}
+
+/* ── 移动端触控目标不小于 44px ───────────────────────── */
+@media (max-width: 700px) {
+  .kd-button { min-height: 44px; padding: 11px 16px; }
+  .kd-text-button { min-height: 44px; padding: 6px 4px; }
+  .kd-claim-tools button { min-height: 44px; min-width: 44px; padding: 6px 2px; justify-content: center; }
+  .kd-card-order button { min-width: 44px; min-height: 44px; }
+  .kd-card-pick-main { min-height: 44px; }
+  .kd-work-list > button { min-height: 44px; }
+  .kd-label input,
+  .kd-label textarea,
+  .kd-card-editor select,
+  .kd-card-studio select {
+    /* iOS Safari 在字号小于 16px 时聚焦会自动放大页面 */
+    font-size: 16px;
+    min-height: 44px;
+  }
+  .kd-label textarea { min-height: 96px; }
+}
+
+/* ── 视频播放器：保证手机上有足够高度且不被裁 ─────────── */
+.kd-video-history video {
+  max-height: min(70vh, 560px);
+  object-fit: contain;
+}
+
+/* ── 长文本可读性：正文行高略放宽 ─────────────────────── */
+.kd-muted { line-height: 1.85; }
+.kd-claim-text { line-height: 1.9; }
+
+/* ── 焦点落点标记：帮助键盘用户定位当前区块 ───────────── */
+.kd-panel:focus-within {
+  border-color: var(--kd-border-strong);
+}
+
+/* ── 禁用状态同时降低对比度并用 not-allowed 光标 ──────── */
+.kd-workbench button:disabled,
+.kd-workbench input:disabled,
+.kd-workbench textarea:disabled,
+.kd-workbench select:disabled {
+  cursor: not-allowed;
+}
+
+/* ── 媒体不撑破容器 ─────────────────── */
+.kd-workbench img,
+.kd-workbench video { max-width: 100%; height: auto; }
+
+/* ============================================================
+   分步切换：一次只显示一个步骤（阶段3-2 后续调整）
+   ============================================================ */
+
+/* 隐藏的步骤不占位置，但组件仍挂载，未保存的草稿不会丢 */
+.kd-stage[hidden] {
+  display: none !important;
+}
+
+/* 步骤条做成可点标签，并粘在顶栏下面，随时能切 */
+.kd-steps {
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+  background: var(--kd-bg);
+  margin-top: 20px;
+}
+
+.kd-step {
+  appearance: none;
+  border: none;
+  border-right: 1px solid var(--kd-border);
+  background: transparent;
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--kd-text-faint);
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: color var(--kd-t), background var(--kd-t);
+}
+
+.kd-step:hover:not(:disabled) {
+  color: var(--kd-text-2);
+  background: var(--kd-surface-2);
+}
+
+.kd-step:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.kd-step.kd-step-current {
+  color: var(--kd-text-2);
+  background: var(--kd-surface-2);
+  box-shadow: inset 0 -2px 0 var(--kd-accent);
+}
+
+.kd-step.kd-step-current b {
+  color: var(--kd-accent);
+}
+
+.kd-step.kd-step-done b {
+  color: var(--kd-success);
+}
+
+/* 后台任务提示条：切到别的步骤也能看到 */
+.kd-running-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--kd-text-muted);
+  background: var(--kd-accent-soft);
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  border-radius: var(--kd-r);
+  padding: 9px 14px;
+  margin-top: 12px;
+}
+
+.kd-running-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--kd-accent);
+  flex-shrink: 0;
+  animation: kd-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes kd-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+@media (max-width: 540px) {
+  .kd-steps { top: 56px; }
+  .kd-step { font-size: 9px; padding: 7px 4px; }
+}
+
+/* ── 步骤标签里的完成勾 ───────────────────────────────── */
+.kd-step-check {
+  display: inline-block;
+  margin-left: 5px;
+  color: var(--kd-success);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ── 导出历史：旧版本折叠成一行，不再铺一屏大图 ───────── */
+.kd-export-older {
+  margin-top: 16px;
+  border-top: 1px solid var(--kd-border);
+  padding-top: 12px;
+}
+
+.kd-export-older > summary {
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--kd-text-muted);
+  padding: 6px 0;
+  min-height: 24px;
+  list-style: none;
+}
+
+.kd-export-older > summary::-webkit-details-marker { display: none; }
+
+.kd-export-older > summary::before {
+  content: '▸ ';
+  color: var(--kd-accent);
+}
+
+.kd-export-older[open] > summary::before { content: '▾ '; }
+
+.kd-export-older-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--kd-text-muted);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--kd-border);
+}
+
+.kd-export-older-row:last-child { border-bottom: none; }
+
+.kd-export-older-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.kd-export-older-links a {
+  color: var(--kd-accent);
+  font-size: 10px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+}
